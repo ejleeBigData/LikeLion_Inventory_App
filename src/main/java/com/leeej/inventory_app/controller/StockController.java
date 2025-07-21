@@ -37,9 +37,20 @@ public class StockController {
         return stockService.update(id, dto);
     }
 
-
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         stockService.delete(id);
     }
+
+    @PostMapping("/transfer")
+    public void transfer(
+            @RequestParam Long productId,
+            @RequestParam Long srcWarehouseId,
+            @RequestParam Long destWarehouseId,
+            @RequestParam int quantity
+    ){
+        stockService.transferStock(productId, srcWarehouseId, destWarehouseId, quantity);
+    }
+
+
 }
