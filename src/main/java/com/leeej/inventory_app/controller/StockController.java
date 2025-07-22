@@ -1,6 +1,7 @@
 package com.leeej.inventory_app.controller;
 
 import com.leeej.inventory_app.dto.StockDto;
+import com.leeej.inventory_app.dto.StockResponseDto;
 import com.leeej.inventory_app.dto.StockUpdateDto;
 import com.leeej.inventory_app.model.Stock;
 import com.leeej.inventory_app.query.StockSearchCondition;
@@ -18,7 +19,7 @@ public class StockController {
     private final StockService stockService;
 
     @GetMapping
-    public List<Stock> search(StockSearchCondition condition) {
+    public List<StockResponseDto> search(StockSearchCondition condition) {
         return stockService.search(condition);
     }
 

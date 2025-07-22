@@ -1,6 +1,7 @@
 package com.leeej.inventory_app.service;
 
 import com.leeej.inventory_app.dto.StockDto;
+import com.leeej.inventory_app.dto.StockResponseDto;
 import com.leeej.inventory_app.dto.StockUpdateDto;
 import com.leeej.inventory_app.model.Product;
 import com.leeej.inventory_app.model.Stock;
@@ -26,8 +27,11 @@ public class StockService {
     private final ProductRepository productRepository;
     private final WarehouseRepository warehouseRepository;
 
-    public List<Stock> search(StockSearchCondition condition) {
-        return queryRepository.search(condition);
+    public List<StockResponseDto> search(StockSearchCondition condition) {
+        List<Stock> stocks = queryRepository.search(condition);
+
+        return  stocks.stream()
+                .map(StockResponseDto::fromEntity).toList();
     }
 
     public Stock getById(Long id) {
